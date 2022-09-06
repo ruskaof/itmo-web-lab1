@@ -2,6 +2,7 @@ const path = require("path");
 const common = require("./webpack.common");
 const { merge } = require("webpack-merge");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 var webpack = require("webpack");
 
@@ -15,5 +16,6 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             template: "./index.html",
         }),
+        new CleanWebpackPlugin(),
     ],
 });

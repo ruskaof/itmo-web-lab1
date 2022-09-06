@@ -2,6 +2,12 @@ import { GraphManager } from "./GraphManager";
 import { SubmitHandler } from "./SubmitHandler";
 import { Vector } from "./Vector";
 
+function getCssColor(name: string): string {
+    return window
+        .getComputedStyle(document.documentElement)
+        .getPropertyValue(name);
+}
+
 export function setupGraph(
     SubmitHandler: SubmitHandler,
     n_coursors = 10,
@@ -12,8 +18,6 @@ export function setupGraph(
 
     const canvas = <HTMLCanvasElement>document.getElementById("graph")!;
     const ctx = canvas.getContext("2d")!;
-
-    const docStyle = getComputedStyle(document.documentElement);
 
     const width = canvas.width;
     const height = canvas.height;
@@ -27,11 +31,11 @@ export function setupGraph(
         ctx,
         width,
         height,
-        "#161a23",
-        "#a3abb1",
-        "#a3abb1",
-        "#bac3cb",
-        "#18243c"
+        getCssColor("--secondary-background"),
+        getCssColor("--secondary-text"),
+        getCssColor("--secondary-text"),
+        getCssColor("--primary-text"),
+        getCssColor("--areas-color")
     );
 
     function registerClick(event: MouseEvent) {

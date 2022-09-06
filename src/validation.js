@@ -1,6 +1,5 @@
 export function includeValidation() {
     const xInputElement = document.getElementById("input_x");
-    const formElement = document.getElementById("form");
     const submitButtonElement = document.getElementById("submit_button");
     const warningElement = document.getElementById("input_x_warning");
 

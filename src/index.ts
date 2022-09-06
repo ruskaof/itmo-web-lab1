@@ -4,8 +4,11 @@ import { setupGraph } from "./graph";
 import { SubmitHandler } from "./SubmitHandler";
 import { includeValidation } from "./validation";
 
+//declare var BASE_URL = "https://se.ifmo.ru/~s336769";
+var BASE_URL = "http://localhost:3000";
+
 function updateTable() {
-    fetch("../php/table.php")
+    fetch(`${BASE_URL}/php/table.php`)
         .then((response) => {
             return response.text();
         })
@@ -29,14 +32,14 @@ function bindResetButton() {
     console.log("bind reset button click");
 
     $("#reset_button").on("click", () => {
-        fetch("../php/clear_table.php");
+        fetch(`${BASE_URL}/php/clear_table.php`);
         console.log("reset button click");
         updateTable();
     });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const sh = new SubmitHandler(updateTable);
+    const sh = new SubmitHandler(BASE_URL, updateTable);
 
     updateTable();
     setupGraph(sh, 4);

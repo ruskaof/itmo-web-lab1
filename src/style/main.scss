@@ -1,9 +1,3 @@
-$primaryText: #bac3cb;
-$secondaryText: #a3abb1;
-$error: #f54c45;
-$primaryBackground: #0c1116;
-$secondaryBackground: #161a23;
-$bordersColor: #1e232f;
 $standartLeftPadding: 50px;
 
 * {
@@ -12,23 +6,32 @@ $standartLeftPadding: 50px;
 }
 
 :root {
-    background-color: $primaryBackground;
+    // colors are declared here so I could read and write them in js
+    --primary-text: #bac3cb;
+    --secondary-text: #a3abb1;
+    --error: #f54c45;
+    --primary-background: #0c1116;
+    --secondary-background: #161a23;
+    --borders-color: #1e232f;
+    --areas-color: #18243c;
+
+    background-color: var(--primary-background);
 }
 
 header {
     font-family: monospace;
-    background-color: $secondaryBackground;
+    background-color: var(--secondary-background);
     overflow: hidden;
 
     h1 {
         font-size: 40px;
-        color: $primaryText;
+        color: var(--primary-text);
         padding-left: $standartLeftPadding;
     }
 
     h2 {
         font-size: 35px;
-        color: $secondaryText;
+        color: var(--secondary-text);
         padding-left: $standartLeftPadding;
 
         &::after {
@@ -42,7 +45,7 @@ header {
     &:hover {
         h2 {
             &::after {
-                color: $secondaryText;
+                color: var(--secondary-text);
             }
         }
     }
@@ -117,7 +120,7 @@ canvas {
     transition: 0.3s;
     display: inline-block;
     border-radius: 10px;
-    outline: 2px solid $bordersColor;
+    outline: 2px solid var(--borders-color);
 
     &:hover {
         box-shadow: 0 8px 16px 0 rgba(228, 202, 255, 0.2);
@@ -149,7 +152,7 @@ tr:nth-child(even) {
 th,
 td {
     padding: 10px 10px;
-    color: $primaryText;
+    color: var(--primary-text);
 }
 
 .status {
@@ -172,21 +175,21 @@ td {
 
 .value-picker-element {
     border: 1px solid rgba(0, 0, 0, 0.25);
-    background: $primaryBackground;
+    background: var(--primary-background);
     border-radius: 5px;
     border-width: 2px;
-    border-color: $bordersColor;
+    border-color: var(--borders-color);
     outline: none;
 }
 
 input.value-picker-element {
-    color: $primaryText;
+    color: var(--primary-text);
     width: 250px;
     padding: 10px;
 }
 
 select.value-picker-element {
-    color: $primaryText;
+    color: var(--primary-text);
     width: 70px;
     padding: 10px;
 }
@@ -200,26 +203,32 @@ select.value-picker-element {
 }
 
 #input_x_warning {
-    color: $error;
+    color: var(--error);
 }
 
-.mybutton {
-    padding: 10px 25px;
-    font-size: 20px;
-    background: $primaryBackground;
-    outline: none;
-    border-radius: 10px;
-    border: 2px solid $bordersColor;
-    transition: 0.3s;
-    color: $primaryText;
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    .mybutton {
+        padding: 10px 25px;
+        font-size: 20px;
+        background: var(--primary-background);
+        outline: none;
+        border-radius: 10px;
+        border: 2px solid var(--borders-color);
+        transition: 0.3s;
+        color: var(--primary-text);
+    }
 }
 
 .mybutton:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    background-color: $secondaryBackground;
+    background-color: var(--secondary-background);
 }
 
 .label {
-    color: $primaryText;
+    color: var(--primary-text);
     padding-right: 20px;
 }
