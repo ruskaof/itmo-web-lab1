@@ -4,8 +4,8 @@ import { setupGraph } from "./graph";
 import { SubmitHandler } from "./SubmitHandler";
 import { includeValidation } from "./validation";
 
-//declare var BASE_URL = "https://se.ifmo.ru/~s336769";
-var BASE_URL = "http://localhost:3000";
+var BASE_URL = "https://se.ifmo.ru/~s336769";
+// var BASE_URL = "http://localhost:3000";
 
 function updateTable() {
     fetch(`${BASE_URL}/php/table.php`)
