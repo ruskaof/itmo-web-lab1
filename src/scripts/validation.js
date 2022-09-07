@@ -1,7 +1,9 @@
 export function includeValidation() {
-    const xInputElement = document.getElementById("input_x");
-    const submitButtonElement = document.getElementById("submit_button");
-    const warningElement = document.getElementById("input_x_warning");
+    const xInputElement = document.getElementById(DocumentIDs.INPUT_X);
+    const submitButtonElement = document.getElementById(
+        DocumentIDs.SUBMIT_BUTTON
+    );
+    const warningElement = document.getElementById(DocumentIDs.WARNING_TEXT);
 
     function hideWarning() {
         warningElement.innerHTML = "";
@@ -21,7 +23,7 @@ export function includeValidation() {
         submitButtonElement.disabled = true;
     }
 
-    function validateX(event) {
+    function validateX(_event) {
         const numberPattern = new RegExp("^[+-]?([0-9]*[.,])?[0-9]+$");
 
         const x = parseFloat(xInputElement.value);
