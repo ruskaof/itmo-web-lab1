@@ -1,6 +1,7 @@
 import { GraphManager } from "./GraphManager";
 import { SubmitHandler } from "../SubmitHandler";
 import { Vector } from "./Vector";
+import { DocumentIDs } from "../utils/DocumentIDs";
 
 function getCssColor(name: string): string {
     return window
@@ -55,7 +56,7 @@ export function setupGraph(
     coursorSizeCoeff = 0.8
 ) {
     const canvas = <HTMLCanvasElement>(
-        document.getElementById(DocumentIDs.GRAPH_CLICK_SUBMIT_FORM)!
+        document.getElementById(DocumentIDs.GRAPH)!
     );
     const ctx = canvas.getContext("2d")!;
 

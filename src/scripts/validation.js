@@ -1,3 +1,5 @@
+import { DocumentIDs } from "./utils/DocumentIDs";
+
 export function includeValidation() {
     const xInputElement = document.getElementById(DocumentIDs.INPUT_X);
     const submitButtonElement = document.getElementById(
@@ -14,8 +16,13 @@ export function includeValidation() {
         submitButtonElement.disabled = false;
     }
 
-    function showWarning() {
+    function showLimitsWarning() {
         warningElement.innerHTML = "X must be a number in (-3; 3)";
+        warningElement.hidden = false;
+    }
+
+    function showLongNumberWarning() {
+        warningElement.innerHTML = "Your number is too long. We do not support long numbers :)";
         warningElement.hidden = false;
     }
 
@@ -27,13 +34,16 @@ export function includeValidation() {
         const numberPattern = new RegExp("^[+-]?([0-9]*[.,])?[0-9]+$");
 
         const x = parseFloat(xInputElement.value);
-        if (
+        if (xInputElement.value.length > 14) {
+            showLongNumberWarning()
+            disableSubmitButton()
+        } else if (
             Number.isNaN(x) ||
             !numberPattern.test(xInputElement.value) ||
             x <= -3 ||
             x >= 3
         ) {
-            showWarning();
+            showLimitsWarning();
             disableSubmitButton();
         } else {
             hideWarning();
