@@ -2,7 +2,7 @@
 
 $start_time = hrtime(true);
 
-if (!(isset($_POST['x']) && isset($_POST['y']) && isset($_POST['r']))) {
+if (!(isset($_POST['x']) && isset($_POST['y']) && isset($_POST['r']) && isset($_POST['round']))) {
     if (!isset($_POST['r'])) {
         echo 'r not set';
     }
@@ -20,8 +20,21 @@ if (!(isset($_POST['x']) && isset($_POST['y']) && isset($_POST['r']))) {
     $y = strval(str_replace(',', '.', strval($_POST['y'])));
     $r = strval(str_replace(',', '.', strval($_POST['r'])));
 
-    if (!is_numeric($x) || !is_numeric($y) || !is_numeric($r)) {
-        echo 'Not numbers';
+    $round = strval($_POST['round']);
+
+    if ($round != '1' && $round != '0') {
+        echo 'bad round parameter';
+        http_response_code(400);
+    }
+
+    $round = boolval(intval(strval($_POST['round'])));
+    
+
+    if (!$round && (strlen($x) > 14 || strlen($y) > 14 || strlen($r) > 14)) {
+        echo 'Numbers too long';
+        http_response_code(400);
+    } else if (!is_numeric($x) || !is_numeric($y) || !is_numeric($r)) {
+        echo 'Not numbers or numbers are too long';
         http_response_code(400);
     } else {
         $x = floatval(str_replace(',', '.', strval($_POST['x'])));
@@ -69,9 +82,6 @@ if (!(isset($_POST['x']) && isset($_POST['y']) && isset($_POST['r']))) {
             echo "added your thing";
         }
     
-    
-        header('Location: /');
-
     }
 
 }

@@ -16,6 +16,7 @@ export class SubmitHandler {
 
     submit() {
         const formData = new FormData(this._form);
+        formData.append("round", "0")
 
         this.submitWithBody(formData);
     }
@@ -28,6 +29,7 @@ export class SubmitHandler {
         body.append("x", x.toString());
         body.append("y", y.toString());
         body.append("r", r.toString());
+        body.append("round", "1")
 
         this.submitWithBody(body);
     }
