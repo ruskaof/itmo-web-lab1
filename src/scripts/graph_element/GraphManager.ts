@@ -1,3 +1,6 @@
+/**
+ * This class is used to fully draw a graph in a canvas using it's context
+ */
 export class GraphManager {
     private _ctx: CanvasRenderingContext2D;
     private _width: number;
@@ -247,6 +250,9 @@ export class GraphManager {
         this._ctx.stroke();
     }
 
+    /**
+     * Fully re-draws the graph above current canvas.
+     */
     drawGraph() {
         this._ctx.fillStyle = this._bgColor;
         this._ctx.clearRect(0, 0, this._width, this._height);
@@ -261,6 +267,9 @@ export class GraphManager {
         this.drawVerticalAxis();
     }
 
+    /**
+     * Draws a circle on the graph
+     */
     drawCursor(x: number, y: number, sizeCoeff: number = 1) {
         this._ctx.fillStyle = this._cursorColor;
         this._ctx.beginPath();
@@ -268,10 +277,18 @@ export class GraphManager {
         this._ctx.fill();
     }
 
+    /**
+     * This method should be used to convert local canvas x value
+     * to a correct math x value of the graph using the R value
+     */
     convertXToRadiusOf(x: number, r: number): number {
         return ((x - this._width / 2) / this._rValue) * r;
     }
 
+    /**
+     * This method should be used to convert local canvas y value
+     * to a correct math x value of the graph using the R value
+     */
     convertYToRadiusOf(y: number, r: number): number {
         return ((this._height - y - this._height / 2) / this._rValue) * r;
     }
