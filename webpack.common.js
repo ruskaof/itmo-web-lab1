@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var webpack = require("webpack");
 
@@ -12,13 +13,18 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(scss|css)$/,
                 use: [
-                    "style-loader" /* 3 inject into dom */,
-                    "css-loader" /* 2 load css into js */,
-                    "sass-loader" /* 1 turn sass into css */,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: "css-loader",
+                    },
+                    {
+                        loader: "sass-loader",
+                    },
                 ],
-                exclude: /node_modules/,
             },
         ],
     },
@@ -29,6 +35,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name][contenthash].css",
         }),
     ],
 };
