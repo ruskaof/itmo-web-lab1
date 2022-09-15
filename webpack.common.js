@@ -1,5 +1,6 @@
-const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 var webpack = require("webpack");
 
@@ -37,7 +38,13 @@ module.exports = {
             jQuery: "jquery",
         }),
         new MiniCssExtractPlugin({
-            filename: "[name][contenthash].css",
+            filename: "[name].[contenthash].css",
+        }),
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: "./index.html",
+            inject: 'body',
+            favicon: "./favicon.ico"
         }),
     ],
 };
